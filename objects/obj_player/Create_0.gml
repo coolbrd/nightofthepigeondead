@@ -1,6 +1,11 @@
 // the player's current action
 state = player_state.moving;
 
+// the player's head hitbox
+head = instance_create_layer(x, y, "Instances", obj_player_head);
+// give the head a reference to the player
+head.player = id;
+
 // the instance of a swing hitbox currently associated with the player
 swing_instance = noone;
 // the timer that tracks when the player can swing
@@ -21,8 +26,8 @@ current_annoyance = 0;
 // a multiplier that comes from how much more annoyance the player can take
 annoyance_multiplier = 0;
 
-// the floor in the current room, used for tracking poop
-room_floor = instance_find(obj_floor, 0);
+// the floor in the current room
+floor_instance = instance_find(obj_floor, 0);
 
 // randomize the seed
 randomize();

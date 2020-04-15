@@ -199,10 +199,26 @@
             }
         },
         {
+            "Key": "715dd480-5d5b-473b-9a56-e2c60efcca8a",
+            "Value": {
+                "id": "7385d4cb-c20a-4126-9a12-df49d238ff54",
+                "resourcePath": "sprites\\spr_poop_splatter\\spr_poop_splatter.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "756ba3e3-207c-4c0b-8e96-ba919f0d20eb",
             "Value": {
                 "id": "01175365-3005-4684-8c0b-14654f151925",
                 "resourcePath": "sprites\\bg_level\\bg_level.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "7c3ff6c3-c971-4c8d-8d4c-8efcafd59f56",
+            "Value": {
+                "id": "03362ec7-1adc-4d24-9588-af883ab02a6f",
+                "resourcePath": "sprites\\spr_falling_poop\\spr_falling_poop.yy",
                 "resourceType": "GMSprite"
             }
         },
@@ -228,6 +244,14 @@
                 "id": "b3df5e33-c1a2-4641-94a2-c5c5f0ca4824",
                 "resourcePath": "scripts\\scr_move\\scr_move.yy",
                 "resourceType": "GMScript"
+            }
+        },
+        {
+            "Key": "90e327be-a9ca-4ab6-8896-340c8c169281",
+            "Value": {
+                "id": "083427e7-dad2-4a78-b00b-90bb121f6c8f",
+                "resourcePath": "sprites\\spr_player_head\\spr_player_head.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
@@ -375,6 +399,14 @@
             }
         },
         {
+            "Key": "c7c61f61-d7b0-4050-8264-8fd392960723",
+            "Value": {
+                "id": "fd87c100-2121-4d2f-a12e-cba49be94ab1",
+                "resourcePath": "scripts\\scr_increment_towards\\scr_increment_towards.yy",
+                "resourceType": "GMScript"
+            }
+        },
+        {
             "Key": "cc98d028-7bdd-4680-85f3-c87a7baa481e",
             "Value": {
                 "id": "7e3bc68d-7f02-4aa9-a5a8-90632dfc4fc0",
@@ -404,6 +436,14 @@
                 "id": "e8fc3639-81e8-4532-939b-f8f409bd48e9",
                 "resourcePath": "views\\d2b5c92e-eb9f-46ec-8b3d-f3c4e01990a5.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "d4c2ee9d-772c-4ccb-b041-39e1731d7130",
+            "Value": {
+                "id": "681e5d8a-a7a7-4500-8cd6-3ed00dddad18",
+                "resourcePath": "objects\\obj_player_head\\obj_player_head.yy",
+                "resourceType": "GMObject"
             }
         },
         {
@@ -457,7 +497,8 @@
     ],
     "script_order": [
         "c2bbdf46-860a-46ce-9264-c53954a2c8ed",
-        "8f15564b-a7a0-459a-841b-2a075deb7ddc"
+        "8f15564b-a7a0-459a-841b-2a075deb7ddc",
+        "c7c61f61-d7b0-4050-8264-8fd392960723"
     ],
     "tutorial": ""
 }

@@ -5,5 +5,6 @@ enum player_state {
 
 enum pigeon_state {
 	circling,
-	diving
+	diving,
+	rising
 }

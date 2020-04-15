@@ -1,2 +1,2 @@
-// whether or not this floor has poop on it
-poop_on_floor = false;
+// the number of poop on the floor
+poop_count = 0;

@@ -16,11 +16,16 @@ var _clean = mouse_check_button_pressed(mb_right);
 annoyance_multiplier = current_annoyance / max_annoyance;
 
 // if there's currently no poop on the floor
-if (!room_floor.poop_on_floor) {
+if (floor_instance.poop_count <= 0) {
 	// the value to decease the player's annoyance level by
 	var _annoyance_decrement = max(0.1, annoyance_multiplier / 3);
 	// decrease the player's annoyance
 	current_annoyance = max(0, current_annoyance - _annoyance_decrement);
+}
+// if there's poop on the floor
+else {
+	// add to the player's annoyance
+	current_annoyance += floor_instance.poop_count * per_poop_annoyance;
 }
 #endregion
 
@@ -58,9 +63,6 @@ switch (state) {
 		if (_swing && current_swing_cooldown <= 0) {
 			// create a swing area
 			swing_instance = instance_create_layer(x, y - sprite_height / 2, "Instances", obj_swing);
-			
-			// move the swing area to directly above the player
-			swing_instance.y -= swing_instance.sprite_height / 2;
 			swing_x_offset = swing_instance.x - x;
 			swing_y_offset = swing_instance.y - y;
 			

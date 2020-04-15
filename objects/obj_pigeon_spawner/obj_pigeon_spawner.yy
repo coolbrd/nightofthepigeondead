@@ -52,9 +52,23 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "12",
+            "value": "10",
             "varName": "max_pigeons",
             "varType": 1
+        },
+        {
+            "id": "5283df2d-a21a-4cf5-8ed1-d6bb9024a5e3",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "8",
+            "varName": "max_poop",
+            "varType": 0
         }
     ],
     "solid": false,

@@ -154,6 +154,20 @@
             "value": "100",
             "varName": "max_annoyance",
             "varType": 1
+        },
+        {
+            "id": "ba8e2e31-35fa-4f8c-abe5-87f4907cd8cf",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "0.02",
+            "varName": "per_poop_annoyance",
+            "varType": 0
         }
     ],
     "solid": false,
