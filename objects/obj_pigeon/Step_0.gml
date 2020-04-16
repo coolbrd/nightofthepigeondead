@@ -1,5 +1,21 @@
+if (global.pause_frames > 0) exit;
+
 // move
 event_inherited();
+
+#region timers
+if (turnaround_timer <= 0) {
+	turnaround_timer = floor(random_range(turnaround_delay_min, turnaround_delay_min + turnaround_delay_range));
+}
+
+if (dive_timer <= 0) {
+	dive_timer = floor(random_range(dive_delay_min, dive_delay_min + dive_delay_range));
+}
+
+if (poop_timer <= 0) {
+	poop_timer = floor(random_range(poop_delay_min, poop_delay_min + poop_delay_range));
+}
+#endregion
 
 // main state machine
 switch (state) {
@@ -16,35 +32,29 @@ switch (state) {
 		// if the pigeon is beyond the middle point of the room
 		if (sign(x - room_width / 2) == sign(xspeed)) {
 			// decrement the turnaround timer and see if it's done
-			if (turnaround_timer-- <= 0) {
+			if (--turnaround_timer <= 0) {
 				// change the pigeon's direction
 				flying_direction *= -1;
-				// reset the timer
-				turnaround_timer = random_range(turnaround_min, turnaround_max);
 			}
 		}
 		// if the pigeon is heading towards the player
 		else if (sign(player.x - x) == sign(xspeed)) {
 			// decrement the dive timer and see if it's up
-			if (dive_timer-- <= 0) {
+			if (--dive_timer <= 0) {
 				// make the pigeon dive
 				state = pigeon_state.diving;
 				// allow the pigeon to annoy the player once during its dive
 				can_annoy = true;
-				// reset the dive timer
-				dive_timer = random_range(dive_delay_min, dive_delay_max);
 			}
 		}
 		
 		// if the pigeon's poop timer is up
-		if (poop_timer++ >= poop_interval) {
+		if (--poop_timer <= 0) {
 			// if there is not too much poop already on screen
 			if (instance_number(obj_poop) < spawner.max_poop) {
 				// create poop
 				instance_create_layer(x, y, "Instances", obj_poop);
 			}
-			// reset the timer
-			poop_timer = 0;
 		}
 		break;
 	}

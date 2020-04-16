@@ -1,3 +1,5 @@
+if (global.pause_frames > 0) exit;
+
 // move
 event_inherited();
 
@@ -9,6 +11,7 @@ var _right = keyboard_check(ord("D"));
 // action inputs
 var _swing = mouse_check_button_pressed(mb_left);
 var _clean = mouse_check_button_pressed(mb_right);
+var _dash = keyboard_check_pressed(vk_lshift);
 #endregion
 
 #region annoyance decay
@@ -29,40 +32,40 @@ else {
 }
 #endregion
 
-#region animation
-// the direction that the player is moving
-var _x_dir = _left + _right;
-
-// if the player is moving
-if (xspeed != 0) {
-	// play the running animation
-	sprite_index = spr_player_run;
-}
-// if the player is stopped
-else {
-	// play the idle animation
-	sprite_index = spr_player_idle;
-}
 // scale the animation's speed with the player's annoyance
 image_speed = annoyance_multiplier + 1;
-
-// make the player face the direction of movement
-image_xscale = _x_dir == 0 ? image_xscale : -_x_dir;
-#endregion
 
 #region main state machine
 switch (state) {
 	#region move state
 	case player_state.moving: {
+		// the direction that the player is moving
+		var _x_dir = _left + _right;
+		
 		// the value to scale the player's speed by
 		var _speed_multiplier = annoyance_multiplier + 1;
 		// calculate and apply the player's speed
 		xspeed = walk_speed * _x_dir * _speed_multiplier;
 		
+		// if the player is moving
+		if (xspeed != 0) {
+			// play the running animation
+			sprite_index = spr_player_running;
+		}
+		// if the player is stopped
+		else {
+			// play the idle animation
+			sprite_index = spr_player_idle;
+		}
+		
+		// make the player face the direction of movement
+		image_xscale = _x_dir == 0 ? image_xscale : -_x_dir;
+		
 		// if the player is trying to swing, and the swing ability is not on cooldown
 		if (_swing && current_swing_cooldown <= 0) {
-			// create a swing area
+			// create a swing
 			swing_instance = instance_create_layer(x, y - sprite_height / 2, "Instances", obj_swing);
+			swing_instance.player = id;
 			swing_x_offset = swing_instance.x - x;
 			swing_y_offset = swing_instance.y - y;
 			
@@ -73,12 +76,15 @@ switch (state) {
 			var _swing_cooldown_multiplier = 1 - annoyance_multiplier / 2;
 			// apply the swing ability cooldown
 			current_swing_cooldown = swing_cooldown * _swing_cooldown_multiplier;
+			
+			// animate the player swinging
+			scr_start_animation(spr_player_swinging);
 		}
-		
-		// if the player is trying to clean and is not currently swinging
-		if (_clean && swing_timer <= 0) {
+		// if the player is trying to clean and is not currently swinging 
+		else if (_clean && swing_timer <= 0) {
 			// create a cleaning area
-			clean_area_instance = instance_create_layer(x, y + sprite_height / 3, "Instances", obj_clean_area);
+			puddle_instance = instance_create_layer(x, y + sprite_height / 2, "Instances", obj_clean_area);
+			puddle_instance.player = id;
 			
 			// the multiplier to scale the amount of time that it takes to clean
 			var _cleaning_time_multiplier = 1 - (annoyance_multiplier / 2);
@@ -87,6 +93,20 @@ switch (state) {
 			
 			// put the player into a state of cleaning, restricting movement
 			state = player_state.cleaning;
+			
+			// play the mopping animation
+			scr_start_animation(spr_player_mopping);
+		}
+		// if the player is trying to dash
+		else if (_dash) {
+			// start the dash timer
+			dash_timer = dash_duration;
+		}
+		
+		// if the dash timer is running and not up
+		if (dash_timer-- > 0) {
+			// increase the player's speed
+			xspeed = dash_speed * _x_dir;
 		}
 		break;
 	}
@@ -97,8 +117,7 @@ switch (state) {
 		xspeed = 0;
 		// if the cleaning time is up
 		if (cleaning_timer-- <= 0) {
-			// destroy the cleaning area
-			instance_destroy(clean_area_instance);
+			puddle_instance.active = false;
 			// allow the player to move again
 			state = player_state.moving;
 		}
@@ -110,12 +129,16 @@ switch (state) {
 
 // if the player is currently swinging
 if (swing_instance) {
+	// play the swinging animation
+	sprite_index = spr_player_swinging;
+	// don't scale this animation with annoyance
+	image_speed = 1;
 	// lock the swing's position to the player's
 	swing_instance.x = x + swing_x_offset;
 	swing_instance.y = y + swing_y_offset;
 	
 	// if the swing's time is up
-	if (swing_timer-- <= 0) {
+	if (--swing_timer <= 0) {
 		// destroy the swing area
 		instance_destroy(swing_instance);
 		// remove the reference to the swing instance

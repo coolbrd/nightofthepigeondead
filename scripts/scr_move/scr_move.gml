@@ -1,3 +1,5 @@
+/// @desc moves an instance according to its xspeed and yspeed
+
 var _collider = argument[0];
 
 if (_collider != noone) {

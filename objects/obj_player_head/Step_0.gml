@@ -1,3 +1,5 @@
+if (global.pause_frames > 0) exit;
+
 // lock the head to the player
 x = player.x;
 y = player.y;

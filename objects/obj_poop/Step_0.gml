@@ -1,3 +1,5 @@
+if (global.pause_frames > 0) exit;
+
 // move
 event_inherited();
 

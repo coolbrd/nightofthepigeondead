@@ -1,16 +1,38 @@
-// the list of things that this swing has collided with
-var _collisions_list = ds_list_create();
-// check for collisions with pigeons and poop
-instance_place_list(x, y, obj_pigeon, _collisions_list, false);
-instance_place_list(x, y, obj_poop, _collisions_list, false);
+if (global.pause_frames > 0) exit;
+
+// the list of pigeons that this swing has collided with
+var _pigeon_list = ds_list_create();
+// check for collisions with pigeon
+instance_place_list(x, y, obj_pigeon, _pigeon_list, false);
 
 // if any collisions were found
-if (ds_list_size(_collisions_list)) {
+if (ds_list_size(_pigeon_list)) {
 	// iterate over every collision
-	for (var _i = 0; _i < ds_list_size(_collisions_list); _i++) {
+	for (var _i = 0; _i < ds_list_size(_pigeon_list); _i++) {
 		// destroy it
-		instance_destroy(_collisions_list[| _i]);
+		instance_destroy(_pigeon_list[| _i]);
+		// give the player a point
+		player.total_score++;
+		global.pause_frames += 2;
+		global.screenshake_frames += 5;
 	}
 }
 // clean up the list
-ds_list_destroy(_collisions_list);
+ds_list_destroy(_pigeon_list);
+
+// the list of poop that this swing has collided with
+var _poop_list = ds_list_create();
+// if any collisions were found
+instance_place_list(x, y, obj_poop, _poop_list, false);
+// if any collisions were found
+if (ds_list_size(_poop_list)) {
+	// iterate over every collision
+	for (var _i = 0; _i < ds_list_size(_poop_list); _i++) {
+		// destroy it
+		instance_destroy(_poop_list[| _i]);
+		// give the player a point
+		player.total_score++;
+	}
+}
+// clean up the list
+ds_list_destroy(_poop_list);

@@ -6,5 +6,8 @@ player = instance_find(obj_player, 0);
 // whether or not that poop has splattered
 splat = false;
 
+// whether or not the poop has been cleaned up
+cleaned = false;
+
 // whether or not the poop stays after splattering
 destroy_after_splat = false;

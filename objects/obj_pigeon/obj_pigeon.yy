@@ -52,8 +52,8 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "0",
-            "varName": "fly_speed",
+            "value": "3",
+            "varName": "flying_speed",
             "varType": 0
         },
         {
@@ -69,6 +69,62 @@
             "value": "1",
             "varName": "flying_direction",
             "varType": 1
+        },
+        {
+            "id": "77277db1-cd59-4b18-bb1b-49f12af0f79a",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "y",
+            "varName": "flying_level",
+            "varType": 4
+        },
+        {
+            "id": "3c92f153-1ab3-46ab-88a7-a13dfc697b72",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "200",
+            "varName": "poop_delay_min",
+            "varType": 1
+        },
+        {
+            "id": "b5ed3f2f-8750-4f21-8d2d-608a05c805f6",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "500",
+            "varName": "poop_delay_range",
+            "varType": 1
+        },
+        {
+            "id": "a78bc69b-af98-44db-9541-c4e7d61ee9dd",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "1",
+            "varName": "dive_speed",
+            "varType": 0
         },
         {
             "id": "99a7458e-17ba-4edb-a1ae-df6fcfc78560",
@@ -95,7 +151,7 @@
             "rangeMin": 0,
             "resourceFilter": 1023,
             "value": "30",
-            "varName": "turnaround_min",
+            "varName": "turnaround_delay_min",
             "varType": 1
         },
         {
@@ -108,37 +164,9 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "180",
-            "varName": "turnaround_max",
+            "value": "150",
+            "varName": "turnaround_delay_range",
             "varType": 1
-        },
-        {
-            "id": "31148d36-6719-4f85-9c41-83fcfd299ad0",
-            "modelName": "GMObjectProperty",
-            "mvc": "1.0",
-            "listItems": null,
-            "multiselect": false,
-            "rangeEnabled": false,
-            "rangeMax": 10,
-            "rangeMin": 0,
-            "resourceFilter": 1023,
-            "value": "240",
-            "varName": "poop_interval",
-            "varType": 1
-        },
-        {
-            "id": "a78bc69b-af98-44db-9541-c4e7d61ee9dd",
-            "modelName": "GMObjectProperty",
-            "mvc": "1.0",
-            "listItems": null,
-            "multiselect": false,
-            "rangeEnabled": false,
-            "rangeMax": 10,
-            "rangeMin": 0,
-            "resourceFilter": 1023,
-            "value": "1",
-            "varName": "dive_speed",
-            "varType": 0
         },
         {
             "id": "e2bd8334-3670-461c-bb51-086c9574c030",
@@ -164,8 +192,8 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "720",
-            "varName": "dive_delay_max",
+            "value": "400",
+            "varName": "dive_delay_range",
             "varType": 1
         },
         {

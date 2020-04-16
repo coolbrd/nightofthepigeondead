@@ -45,7 +45,7 @@
             "m_owner": "8bcc61f8-700b-440e-b5c7-e2b6bb06a72d"
         }
     ],
-    "maskSpriteId": "00000000-0000-0000-0000-000000000000",
+    "maskSpriteId": "10490c93-043b-40cd-94b3-bfc4a55812a4",
     "overriddenProperties": [
         {
             "id": "9d0ff5b4-9814-41a7-868b-5c7138c9f862",
@@ -168,6 +168,34 @@
             "value": "0.02",
             "varName": "per_poop_annoyance",
             "varType": 0
+        },
+        {
+            "id": "d7dfaa10-a327-4e27-bd6f-23cf6da1f2e2",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "5",
+            "varName": "dash_duration",
+            "varType": 1
+        },
+        {
+            "id": "3709e836-8b63-439a-a4b4-229c2d5644dc",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "8",
+            "varName": "dash_speed",
+            "varType": 1
         }
     ],
     "solid": false,

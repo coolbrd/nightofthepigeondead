@@ -1,3 +1,5 @@
+if (global.pause_frames > 0) exit;
+
 // the list of colliding poop
 var _poop_list = ds_list_create();
 // check for poop collisions

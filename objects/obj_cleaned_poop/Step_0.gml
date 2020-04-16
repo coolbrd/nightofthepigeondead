@@ -1,0 +1,1 @@
+scr_fade_away(0.05);
