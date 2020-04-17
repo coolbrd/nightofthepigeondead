@@ -9,10 +9,17 @@ instance_place_list(x, y, obj_pigeon, _pigeon_list, false);
 if (ds_list_size(_pigeon_list)) {
 	// iterate over every collision
 	for (var _i = 0; _i < ds_list_size(_pigeon_list); _i++) {
+		// the currently iterated pigeon
+		var _current_pigeon = _pigeon_list[| _i];
+		// indicate that the player killed this pigeon
+		_current_pigeon.killer = player;
+		// allow the corpse of this pigeon to kill other pigeons
+		_current_pigeon.corpse_deadly = true;
 		// destroy it
-		instance_destroy(_pigeon_list[| _i]);
+		instance_destroy(_current_pigeon);
 		// give the player a point
 		player.total_score++;
+		player.current_annoyance = max(0, player.current_annoyance + annoyance_per_kill);
 		global.pause_frames += 2;
 		global.screenshake_frames += 5;
 	}

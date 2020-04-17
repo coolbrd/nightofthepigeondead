@@ -97,6 +97,20 @@
             "value": "7",
             "varName": "duration",
             "varType": 1
+        },
+        {
+            "id": "8de94d9a-a78a-4ba7-9143-b3b4c7b8dd9d",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "-5",
+            "varName": "annoyance_per_kill",
+            "varType": 1
         }
     ],
     "solid": false,

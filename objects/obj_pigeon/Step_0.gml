@@ -48,12 +48,17 @@ switch (state) {
 			}
 		}
 		
-		// if the pigeon's poop timer is up
-		if (--poop_timer <= 0) {
-			// if there is not too much poop already on screen
-			if (instance_number(obj_poop) < spawner.max_poop) {
-				// create poop
-				instance_create_layer(x, y, "Instances", obj_poop);
+		// if the pigeon is above the floor
+		if (position_meeting(x, floor_instance.y, obj_floor)) {
+			// if the pigeon's poop timer is up
+			if (--poop_timer <= 0) {
+				// if there is not too much poop already on screen
+				if (instance_number(obj_poop) < spawner.max_poop) {
+					// create poop
+					instance_create_layer(x, y, "Instances", obj_poop);
+					
+					stat.poop_total++;
+				}
 			}
 		}
 		break;

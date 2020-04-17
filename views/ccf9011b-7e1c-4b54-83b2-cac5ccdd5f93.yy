@@ -5,7 +5,8 @@
     "name": "ccf9011b-7e1c-4b54-83b2-cac5ccdd5f93",
     "children": [
         "1c07f2b2-7c1e-4f6a-90e2-def78384c9a9",
-        "e6db00a4-1cea-4a6d-a0e0-452bec9834cd"
+        "e6db00a4-1cea-4a6d-a0e0-452bec9834cd",
+        "4f0b02d1-5f4e-4724-9588-992c3d883d71"
     ],
     "filterType": "GMObject",
     "folderName": "Managers",

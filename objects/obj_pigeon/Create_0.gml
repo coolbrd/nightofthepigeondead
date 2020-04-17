@@ -13,3 +13,11 @@ can_annoy = true;
 
 // the player instance in the room
 player = instance_find(obj_player, 0);
+// the floor of the room
+floor_instance = instance_find(obj_floor, 0);
+
+killer = noone;
+kill_force = 1;
+corpse_deadly = false;
+
+stat = instance_find(obj_stat_reporter, 0);
