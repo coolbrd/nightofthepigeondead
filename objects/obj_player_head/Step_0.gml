@@ -23,6 +23,9 @@ if (instance_place_list(x, y, obj_poop, _poop_list, false)) {
 			
 			// increase the player's annoyance
 			player.current_annoyance += 10;
+			
+			// play a nasty sound
+			audio_play_sound(snd_pigeon_attack, 2, false);
 		}
 	}
 }

@@ -7,6 +7,9 @@ event_inherited();
 if (!splat && yspeed == 0) {
 	// indicate that the poop has splat
 	splat = true;
+	
+	// play the poop splat noise
+	audio_play_sound(snd_poop_splat, 2, false);
 }
 
 // if the poop has splat

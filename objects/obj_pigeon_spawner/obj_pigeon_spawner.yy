@@ -62,7 +62,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "15",
+            "value": "18",
             "varName": "max_pigeons",
             "varType": 1
         },
@@ -76,7 +76,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "10",
+            "value": "11",
             "varName": "max_poop",
             "varType": 1
         },

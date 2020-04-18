@@ -1,3 +1,6 @@
+// start the music
+audio_play_sound(mus_game, 1, true);
+
 // the number of frames to pause the game for
 global.pause_frames = 0;
 // the number of frames to shake the screen for

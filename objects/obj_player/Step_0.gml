@@ -5,13 +5,13 @@ event_inherited();
 
 #region controls
 // movement inputs
-var _left = -keyboard_check(ord("A"));
-var _right = keyboard_check(ord("D"));
+var _left = -keyboard_check(vk_left);
+var _right = keyboard_check(vk_right);
 
 // action inputs
-var _swing = mouse_check_button_pressed(mb_left);
-var _clean = mouse_check_button_pressed(mb_right);
-var _dash = keyboard_check_pressed(vk_lshift);
+var _swing = keyboard_check_pressed(ord("X"));
+var _clean = keyboard_check_pressed(ord("Z"));
+var _dash = keyboard_check_pressed(vk_space);
 #endregion
 
 #region annoyance decay
@@ -79,6 +79,8 @@ switch (state) {
 			
 			// animate the player swinging
 			scr_start_animation(spr_player_swinging);
+			
+			audio_play_sound(snd_mop_swing, 2, false);
 		}
 		// if the player is trying to clean and is not currently swinging 
 		else if (_clean && swing_timer <= 0) {

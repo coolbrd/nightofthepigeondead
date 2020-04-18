@@ -22,6 +22,9 @@ if (ds_list_size(_pigeon_list)) {
 		player.current_annoyance = max(0, player.current_annoyance + annoyance_per_kill);
 		global.pause_frames += 2;
 		global.screenshake_frames += 5;
+		
+		// play the hit sound
+		audio_play_sound(snd_pigeon_hit, 2, false);
 	}
 }
 // clean up the list

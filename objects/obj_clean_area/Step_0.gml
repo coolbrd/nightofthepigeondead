@@ -21,5 +21,5 @@ if (active) {
 // if the puddle is no longer in use
 else {
 	// make it fade and disappear
-	scr_fade_away(0.004);
+	scr_fade_away(fade_rate);
 }

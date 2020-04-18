@@ -9,7 +9,7 @@ if (turnaround_timer <= 0) {
 }
 
 if (dive_timer <= 0) {
-	dive_timer = floor(random_range(dive_delay_min, dive_delay_min + dive_delay_range));
+	dive_timer = floor(random_range(dive_delay_min, dive_delay_min + dive_delay_range) * (1 - player.annoyance_multiplier / 2));
 }
 
 if (poop_timer <= 0) {
@@ -58,6 +58,8 @@ switch (state) {
 					instance_create_layer(x, y, "Instances", obj_poop);
 					
 					stat.poop_total++;
+					
+					audio_play_sound(snd_pigeon_poop, 2, false);
 				}
 			}
 		}
@@ -82,6 +84,9 @@ switch (state) {
 				_player_head.player.current_annoyance += annoyance_per_dive;
 				// prevent the pigeon from annoying the player again during the same state
 				can_annoy = false;
+				
+				// play the pigeon's attack sound
+				audio_play_sound(snd_pigeon_attack, 2, false);
 			}
 		}
 		

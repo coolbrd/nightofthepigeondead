@@ -240,7 +240,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "2",
+            "value": "-2",
             "varName": "annoyance_on_death",
             "varType": 1
         }
