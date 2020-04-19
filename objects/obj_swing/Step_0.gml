@@ -17,9 +17,7 @@ if (ds_list_size(_pigeon_list)) {
 		_current_pigeon.corpse_deadly = true;
 		// destroy it
 		instance_destroy(_current_pigeon);
-		// give the player a point
-		player.total_score++;
-		player.current_annoyance = max(0, player.current_annoyance + annoyance_per_kill);
+		player.current_annoyance += annoyance_per_kill;
 		global.pause_frames += 2;
 		global.screenshake_frames += 5;
 		
@@ -40,8 +38,6 @@ if (ds_list_size(_poop_list)) {
 	for (var _i = 0; _i < ds_list_size(_poop_list); _i++) {
 		// destroy it
 		instance_destroy(_poop_list[| _i]);
-		// give the player a point
-		player.total_score++;
 	}
 }
 // clean up the list

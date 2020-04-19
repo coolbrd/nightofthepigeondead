@@ -9,7 +9,7 @@ if (turnaround_timer <= 0) {
 }
 
 if (dive_timer <= 0) {
-	dive_timer = floor(random_range(dive_delay_min, dive_delay_min + dive_delay_range) * (1 - player.annoyance_multiplier / 2));
+	dive_timer = floor(random_range(dive_delay_min, dive_delay_min + dive_delay_range) * (0.85 - player.annoyance_multiplier / 2));
 }
 
 if (poop_timer <= 0) {
@@ -43,8 +43,22 @@ switch (state) {
 			if (--dive_timer <= 0) {
 				// make the pigeon dive
 				state = pigeon_state.diving;
-				// allow the pigeon to annoy the player once during its dive
-				can_annoy = true;
+			}
+		}
+		
+		// if the pigeon hasn't already annoyed the player during its current state
+		if (can_annoy) {
+			// check for collision with the players head
+			var _player_head = instance_place(x, y, obj_player_head);
+			// if the pigeon is touching the player's head
+			if (_player_head) {
+				// annoy the player
+				_player_head.player.current_annoyance += annoyance_per_dive;
+				// prevent the pigeon from annoying the player again during the same state
+				can_annoy = false;
+				
+				// play the pigeon's attack sound
+				audio_play_sound(snd_pigeon_attack, 2, false);
 			}
 		}
 		
@@ -74,26 +88,12 @@ switch (state) {
 		// push the horizontal speed towards a speed going towards the player that's scaled by how close they are
 		xspeed = scr_increment_towards(xspeed, flying_direction * 3, 0.1);
 		
-		// if the pigeon hasn't already annoyed the player during its current state
-		if (can_annoy) {
-			// check for collision with the players head
-			var _player_head = instance_place(x, y, obj_player_head);
-			// if the pigeon is touching the player's head
-			if (_player_head) {
-				// annoy the player
-				_player_head.player.current_annoyance += annoyance_per_dive;
-				// prevent the pigeon from annoying the player again during the same state
-				can_annoy = false;
-				
-				// play the pigeon's attack sound
-				audio_play_sound(snd_pigeon_attack, 2, false);
-			}
-		}
-		
 		// if the pigeon reaches the trough of its dive, or it has already annoyed the player
 		if (y >= player.y - player.sprite_height / 2 || !can_annoy) {
 			// make the pigeon circle again
 			state = pigeon_state.circling;
+			// allow the pigeon to annoy the player once during its ascent
+			can_annoy = true;
 		}
 		break;
 	}

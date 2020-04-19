@@ -10,5 +10,7 @@ if (killer) {
 	_corpse.yspeed = -(3 + 3 * player.annoyance_multiplier) * kill_force;
 }
 
+// give the player a point
+player.total_score++;
 // decrease the player's annoyance a little
-player.current_annoyance = max(0, player.current_annoyance + annoyance_on_death);
+player.current_annoyance += annoyance_on_death;

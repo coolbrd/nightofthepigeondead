@@ -25,13 +25,23 @@ if (deadly) {
 		// slow the corpse
 		xspeed /= 2;
 		yspeed /= 2;
+		
+		// play a sound every time a corpse kills a pigeon
+		audio_play_sound(snd_pigeon_corpse_hit, 2, false);
 	}
 	
 	// check for poop collisions
 	var _poop = instance_place(x, y, obj_poop);
 	// if the corpse is colliding with poop
 	if (_poop) {
-		// destroy the poop
-		instance_destroy(_poop);
+		// if the poop is not on the ground
+		if (!_poop.splat) {
+			// destroy the poop
+			instance_destroy(_poop);
+		}
 	}
+}
+
+if (y > room_height + sprite_height) {
+	instance_destroy();
 }

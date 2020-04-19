@@ -20,6 +20,8 @@ if (instance_place_list(x, y, obj_poop, _poop_list, false)) {
 			_current_poop.splat = true;
 			// indicate that the poop should be destroyed after finishing its animation
 			_current_poop.destroy_after_splat = true;
+			// indicate that this poop should not give the player any relief after its death
+			_current_poop.relieve_on_death = false;
 			
 			// increase the player's annoyance
 			player.current_annoyance += 10;

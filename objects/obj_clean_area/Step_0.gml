@@ -1,5 +1,12 @@
 if (global.pause_frames > 0) exit;
 
+if (active_frames <= 0) {
+	active = false;
+}
+else {
+	active_frames--;
+}
+
 // if the puddle is in use
 if (active) {
 	// the list of poop to clean
@@ -11,8 +18,6 @@ if (active) {
 		for (var _i = 0; _i <  ds_list_size(_poop_list); _i++) {
 			// destroy the poop
 			instance_destroy(_poop_list[| _i]);
-			// give the player a point
-			player.total_score++;
 		}
 	}
 	// clean up the list

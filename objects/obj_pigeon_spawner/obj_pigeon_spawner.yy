@@ -53,6 +53,20 @@
     "physicsStartAwake": true,
     "properties": [
         {
+            "id": "8211e25e-405e-4078-b8ea-6fcb3296fbf0",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "1",
+            "varName": "total_pigeons",
+            "varType": 1
+        },
+        {
             "id": "76822d49-b3fe-40cd-9ee7-3902a732ca7f",
             "modelName": "GMObjectProperty",
             "mvc": "1.0",
@@ -62,7 +76,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "18",
+            "value": "10",
             "varName": "max_pigeons",
             "varType": 1
         },
@@ -76,7 +90,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "11",
+            "value": "10",
             "varName": "max_poop",
             "varType": 1
         },
@@ -90,7 +104,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "50",
+            "value": "100",
             "varName": "spawn_interval",
             "varType": 1
         },

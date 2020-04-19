@@ -151,7 +151,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "100",
+            "value": "1000000",
             "varName": "max_annoyance",
             "varType": 1
         },
@@ -170,6 +170,20 @@
             "varType": 0
         },
         {
+            "id": "26218f9c-2ca8-4fa6-baf1-4d879f057c46",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "3",
+            "varName": "dash_max",
+            "varType": 1
+        },
+        {
             "id": "d7dfaa10-a327-4e27-bd6f-23cf6da1f2e2",
             "modelName": "GMObjectProperty",
             "mvc": "1.0",
@@ -179,7 +193,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "5",
+            "value": "6",
             "varName": "dash_duration",
             "varType": 1
         },
@@ -193,8 +207,22 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "8",
+            "value": "14",
             "varName": "dash_speed",
+            "varType": 1
+        },
+        {
+            "id": "53baa855-3137-492e-9ede-416f5f3f4202",
+            "modelName": "GMObjectProperty",
+            "mvc": "1.0",
+            "listItems": null,
+            "multiselect": false,
+            "rangeEnabled": false,
+            "rangeMax": 10,
+            "rangeMin": 0,
+            "resourceFilter": 1023,
+            "value": "120",
+            "varName": "dash_regen",
             "varType": 1
         }
     ],

@@ -1,5 +1,7 @@
-// start the music
-audio_play_sound(mus_game, 1, true);
+if (room_music) {
+	// start the music
+	audio_play_sound(room_music, 1, true);
+}
 
 // the number of frames to pause the game for
 global.pause_frames = 0;

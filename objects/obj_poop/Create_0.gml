@@ -7,3 +7,5 @@ player = instance_find(obj_player, 0);
 splat = false;
 // whether or not the poop stays after splattering
 destroy_after_splat = false;
+// whether or not the poop will revieve the player of annoyance when it is destroyed
+relieve_on_death = true;

@@ -1,4 +1,5 @@
 /// @desc Spawn pigeon
+
 // create a new pigeoon
 var _pigeon = instance_create_layer(x, y, "Instances", obj_pigeon);
 _pigeon.spawner = id;

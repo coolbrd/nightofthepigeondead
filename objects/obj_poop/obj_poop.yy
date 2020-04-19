@@ -80,7 +80,7 @@
     "physicsStartAwake": true,
     "properties": [
         {
-            "id": "396d3f43-ab31-4450-89dd-d024dfbc4db5",
+            "id": "f69f19a6-81df-4f77-b8b0-57308040efb8",
             "modelName": "GMObjectProperty",
             "mvc": "1.0",
             "listItems": null,
@@ -89,8 +89,8 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "0.02",
-            "varName": "annoyance_per_frame",
+            "value": "-1.5",
+            "varName": "annoyance_on_destroy",
             "varType": 0
         }
     ],
