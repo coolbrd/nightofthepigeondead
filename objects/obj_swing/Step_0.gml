@@ -17,7 +17,10 @@ if (ds_list_size(_pigeon_list)) {
 		_current_pigeon.corpse_deadly = true;
 		// destroy it
 		instance_destroy(_current_pigeon);
-		player.current_annoyance += annoyance_per_kill;
+		// relieve the player
+		scr_annoy_player(annoyance_per_kill, false);
+		
+		// shake the screen a bit
 		global.pause_frames += 2;
 		global.screenshake_frames += 5;
 		

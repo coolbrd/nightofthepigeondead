@@ -1,5 +1,7 @@
+// if this poop provides an annoyance relief on death
 if (relieve_on_death) {
-	player.current_annoyance += annoyance_on_destroy;
+	// relieve the player
+	scr_annoy_player(annoyance_on_destroy, false);
 }
 
 // spawn a cleaned poop effect to fade away

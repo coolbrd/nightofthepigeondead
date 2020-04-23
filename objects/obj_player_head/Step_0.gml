@@ -23,11 +23,11 @@ if (instance_place_list(x, y, obj_poop, _poop_list, false)) {
 			// indicate that this poop should not give the player any relief after its death
 			_current_poop.relieve_on_death = false;
 			
-			// increase the player's annoyance
-			player.current_annoyance += 10;
-			
-			// play a nasty sound
-			audio_play_sound(snd_pigeon_attack, 2, false);
+			// if the player is successfully annoyed
+			if (scr_annoy_player(annoyance_per_poop, true)) {
+				// play a nasty sound
+				audio_play_sound(snd_pigeon_attack, 2, false);
+			}
 		}
 	}
 }

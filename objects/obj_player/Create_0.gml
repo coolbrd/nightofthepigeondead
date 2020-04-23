@@ -44,6 +44,15 @@ dash_timer = 0;
 is_dashing = false;
 dash_and_clean = false;
 
+// whether or not the player takes damage from pigeon and poop collisions
+invulnerable = false;
+// the timer that tracks player invulnerability
+current_invul_timer = 0;
+
+dying = false;
+last_chance_meter = 0;
+last_chance_timer = 0;
+
 // the floor in the current room
 floor_instance = instance_find(obj_floor, 0);
 

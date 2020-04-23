@@ -4,9 +4,9 @@
     "mvc": "1.1",
     "name": "1e91e21f-01de-4f60-8c6d-ff308bab622e",
     "children": [
-        "6a84bba6-835f-49f9-9ca5-716aedf5e0ef",
-        "973d6b25-b52b-4ddf-ab6c-1a739db3fff5",
-        "3c8549c6-a48d-41be-8ade-506a117720fb"
+        "3c8549c6-a48d-41be-8ade-506a117720fb",
+        "f3e0d243-0e30-4e35-85ca-cd7a39db7429",
+        "dd08504f-aa6e-4444-9d28-b29a87996bcc"
     ],
     "filterType": "GMSprite",
     "folderName": "Level",

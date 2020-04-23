@@ -3,6 +3,10 @@ if (global.pause_frames > 0) exit;
 // move
 event_inherited();
 
+if (keyboard_check(ord("R"))) {
+	game_restart();
+}
+
 #region controls
 // movement inputs
 var _left = -keyboard_check(vk_left);
@@ -14,48 +18,83 @@ var _clean = keyboard_check_pressed(ord("Z"));
 var _dash = keyboard_check_pressed(vk_space);
 #endregion
 
-#region annoyance management
-// never let annoyance fall below zero
-current_annoyance = max(0, current_annoyance);
-
-// calculate the annoyance multiplier
-annoyance_multiplier = current_annoyance / max_annoyance;
-
-// if there's currently no poop on the floor
-if (floor_instance.poop_count <= 0) {
-	// the value to decease the player's annoyance level by
-	var _annoyance_decrement = max(0.1, annoyance_multiplier / 3);
-	// decrease the player's annoyance
-	current_annoyance = max(0, current_annoyance - _annoyance_decrement);
-}
-// if there's poop on the floor
-else {
-	// add to the player's annoyance
-	current_annoyance += floor_instance.poop_count * per_poop_annoyance;
-}
-#endregion
-
-// scale the animation's speed with the player's annoyance
-image_speed = annoyance_multiplier + 1;
-
-// decrement the swing cooldown timer
-current_swing_cooldown = max(0, current_swing_cooldown - 1);
-
+#region timers
 // decrement the dash regen timer
 dash_regen_timer = max(0, dash_regen_timer - 1);
 
-// if the player has the max amount of dashes
-if (current_dash_count >= dash_max) {
-	// reset the regen timer
-	dash_regen_timer = dash_regen;
+// decrement the invulnerability timer
+current_invul_timer = max(0, current_invul_timer - 1);
+#endregion
+
+#region annoyance management
+// calculate the annoyance multiplier
+annoyance_multiplier = current_annoyance / max_annoyance;
+
+if (!dying) {
+	// if there's currently no poop on the floor
+	if (floor_instance.poop_count <= 0) {
+		// the value to decease the player's annoyance level by
+		var _annoyance_decrement = max(base_annoyance_decay, annoyance_multiplier / 3);
+		// decrease the player's annoyance
+		current_annoyance = max(0, current_annoyance - _annoyance_decrement);
+	}
+	// if there's poop on the floor
+	else {
+		// add to the player's annoyance
+		current_annoyance += floor_instance.poop_count * per_poop_annoyance;
+	}
+	
+	// if the player's annoyance reaches its max
+	if (current_annoyance >= max_annoyance) {
+		// indicate that the player is dying
+		dying = true;
+		// fill the last chance meter
+		last_chance_meter = last_chance_meter_max;
+		// start the last chance timer
+		last_chance_timer = last_chance_timer_max;
+	}
 }
-// if the player is missing a dash and the timer is up
-else if (dash_regen_timer <= 0) {
-	// regenerate a dash
-	current_dash_count++;
-	// reset the timer
-	dash_regen_timer = dash_regen;
+// if the player is dying
+else {
+	// decrement the last chance timer
+	last_chance_timer = max(0, last_chance_timer - 1);
+	
+	// keep the player's annoyance at max
+	current_annoyance = max_annoyance;
+	// make the player invulnerable during this time
+	event_user(0);
+	
+	// if the player has emptied the last chance meter
+	if (last_chance_meter <= 0) {
+		// indicate that the player is no longer dying
+		dying = false;
+		// decrease the player's annoyance
+		current_annoyance = max_annoyance / 2;
+	}
+	// if the player runs out of time
+	else if (last_chance_timer <= 0) {
+		// kill the player
+		instance_destroy();
+		instance_destroy(head);
+	}
 }
+
+// never let annoyance fall out of range
+current_annoyance = clamp(current_annoyance, 0, max_annoyance);
+
+// scale the animation's speed with the player's annoyance
+image_speed = annoyance_multiplier + 1;
+#endregion
+
+#region invulnerability
+// if the player's invulnerability is over
+if (current_invul_timer <= 0) {
+	// indicate that invulnerability is over
+	invulnerable = false;
+	// return the player's sprite to normal
+	image_alpha = 1;
+}
+#endregion
 
 #region main state machine
 switch (state) {
@@ -132,7 +171,7 @@ switch (state) {
 		}
 		#endregion
 		#region check for clean
-		// if the player is trying to clean and is not currently swinging 
+		// if the player is trying to clean and is not currently swinging or dashing
 		else if (_clean && !is_swinging && !is_dashing) {
 			// the multiplier to scale the amount of time that it takes to clean
 			var _cleaning_time_multiplier = 1 - (annoyance_multiplier / 2);
@@ -151,64 +190,6 @@ switch (state) {
 			audio_play_sound(snd_mopping, 2, false);
 		}
 		#endregion
-		#endregion
-		
-		#region dashing
-		// if the player is dashing
-		if (is_dashing) {
-			// increase the player's speed
-			xspeed = dash_speed * -sign(image_xscale);
-			
-			// if the player presses the clean button
-			if (_clean) {
-				// indicate that the dash should also clean
-				dash_and_clean = true;
-			}
-			// if the dash is also cleaning
-			if (dash_and_clean) {
-				// play the mopping animation
-				sprite_index = spr_player_mopping;
-				
-				// every two frames of the dash
-				if (dash_timer % 2 == 0) {
-					// create a puddle that's active for only one frame
-					scr_create_puddle(x, y + sprite_height / 2, 1);
-				}
-			}
-			
-			// if the dash timer is finished
-			if (dash_timer-- <= 0) {
-				// indicate that the player is no longer dashing
-				is_dashing = false;
-				dash_and_clean = false;
-			}
-		}
-		#endregion
-		
-		#region swinging
-		// if the player is currently swinging
-		if (is_swinging) {
-			// play the swinging animation
-			sprite_index = spr_player_swinging;
-			// don't scale this animation with annoyance
-			image_speed = 1;
-			// lock the swing's position to the player's
-			swing_instance.x = x + swing_x_offset;
-			swing_instance.y = y + swing_y_offset;
-			
-			// lock the swing cooldown at max while swinging
-			current_swing_cooldown = swing_cooldown;
-	
-			// if the swing's time is up
-			if (--swing_timer <= 0) {
-				// destroy the swing area
-				instance_destroy(swing_instance);
-				// remove the reference to the swing instance
-				swing_instance = noone;
-				// indicate that the player is no longer swinging
-				is_swinging = false;
-			}
-		}
 		#endregion
 		break;
 	}
@@ -230,11 +211,78 @@ switch (state) {
 }
 #endregion
 
-// if the player's annoyance reaches its max
-if (current_annoyance >= max_annoyance) {
-	game_restart();
+#region dashing
+// if the player has the max amount of dashes
+if (current_dash_count >= dash_max) {
+	// reset the regen timer
+	dash_regen_timer = dash_regen;
+}
+// if the player is missing a dash and the timer is up
+else if (dash_regen_timer <= 0) {
+	// regenerate a dash
+	current_dash_count++;
+	// reset the timer
+	dash_regen_timer = dash_regen;
 }
 
-if (keyboard_check(ord("R"))) {
-	game_restart();
+// if the player is dashing
+if (is_dashing) {
+	// make the player invulnerable for the duration of the dash
+	invulnerable = true;
+	// increase the player's speed
+	xspeed = dash_speed * -sign(image_xscale);
+			
+	// if the player presses the clean button
+	if (_clean) {
+		// indicate that the dash should also clean
+		dash_and_clean = true;
+	}
+	// if the dash is also cleaning
+	if (dash_and_clean) {
+		// play the mopping animation
+		sprite_index = spr_player_mopping;
+				
+		// every two frames of the dash
+		if (dash_timer % 2 == 0) {
+			// create a puddle that's active for only one frame
+			scr_create_puddle(x, y + sprite_height / 2, 1);
+		}
+	}
+			
+	// if the dash timer is finished
+	if (dash_timer-- <= 0) {
+		// indicate that the player is no longer dashing
+		is_dashing = false;
+		dash_and_clean = false;
+		// stop invulnerability
+		invulnerable = false;
+	}
 }
+#endregion
+
+#region swinging
+// if the player is currently swinging
+if (is_swinging) {
+	// play the swinging animation
+	sprite_index = spr_player_swinging;
+	// don't scale this animation with annoyance
+	image_speed = 1;
+	// lock the swing's position to the player's
+	swing_instance.x = x + swing_x_offset;
+	swing_instance.y = y + swing_y_offset;
+	
+	// if the swing's time is up
+	if (--swing_timer <= 0) {
+		// destroy the swing area
+		instance_destroy(swing_instance);
+		// remove the reference to the swing instance
+		swing_instance = noone;
+		// indicate that the player is no longer swinging
+		is_swinging = false;
+	}
+}
+else {
+	// decrement the swing cooldown timer
+	current_swing_cooldown = max(0, current_swing_cooldown - 1);
+}
+#endregion

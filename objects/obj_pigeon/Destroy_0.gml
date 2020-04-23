@@ -13,4 +13,4 @@ if (killer) {
 // give the player a point
 player.total_score++;
 // decrease the player's annoyance a little
-player.current_annoyance += annoyance_on_death;
+scr_annoy_player(annoyance_on_death, false);
