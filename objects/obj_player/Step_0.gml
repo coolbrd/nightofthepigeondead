@@ -30,6 +30,7 @@ current_invul_timer = max(0, current_invul_timer - 1);
 // calculate the annoyance multiplier
 annoyance_multiplier = current_annoyance / max_annoyance;
 
+// if the player is not dying
 if (!dying) {
 	// if there's currently no poop on the floor
 	if (floor_instance.poop_count <= 0) {
@@ -56,6 +57,9 @@ if (!dying) {
 }
 // if the player is dying
 else {
+	// pause the game's music
+	game_manager.pause_music = true;
+	
 	// decrement the last chance timer
 	last_chance_timer = max(0, last_chance_timer - 1);
 	
@@ -70,6 +74,9 @@ else {
 		dying = false;
 		// decrease the player's annoyance
 		current_annoyance = max_annoyance / 2;
+		
+		// unpause the music
+		game_manager.pause_music = false;
 	}
 	// if the player runs out of time
 	else if (last_chance_timer <= 0) {

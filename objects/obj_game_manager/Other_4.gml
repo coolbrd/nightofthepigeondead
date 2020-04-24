@@ -1,6 +1,7 @@
+// if there's music to play
 if (room_music) {
 	// start the music
-	audio_play_sound(room_music, 1, true);
+	music = audio_play_sound(room_music, 1, true);
 }
 
 // the number of frames to pause the game for

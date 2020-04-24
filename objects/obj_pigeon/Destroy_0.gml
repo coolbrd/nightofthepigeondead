@@ -4,7 +4,7 @@ var _corpse = instance_create_layer(x, y, "Instances", obj_dead_pigeon);
 _corpse.deadly = corpse_deadly;
 
 // if something killed the pigeon
-if (killer) {
+if (instance_exists(killer)) {
 	// scale speeds depending on direction and player annoyance
 	_corpse.xspeed = 5 * -sign(killer.image_xscale) * kill_force;
 	_corpse.yspeed = -(3 + 3 * player.annoyance_multiplier) * kill_force;

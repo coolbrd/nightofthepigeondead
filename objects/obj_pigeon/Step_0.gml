@@ -30,25 +30,22 @@ switch (state) {
 		// push the vertical speed in the direction of the rise speed
 		yspeed = scr_increment_towards(yspeed, _current_rise_speed, 0.1)
 		
-		// if the player exists
-		if (instance_exists(player)) {
-			// if the pigeon is beyond the middle point of the room
-			if (sign(x - room_width / 2) == sign(xspeed)) {
-				// decrement the turnaround timer and see if it's done
-				if (--turnaround_timer <= 0) {
-					// change the pigeon's direction
-					flying_direction *= -1;
-				}
+		// if the pigeon is beyond the middle point of the room
+		if (sign(x - room_width / 2) == sign(xspeed)) {
+			// decrement the turnaround timer and see if it's done
+			if (--turnaround_timer <= 0) {
+				// change the pigeon's direction
+				flying_direction *= -1;
 			}
-			// if the pigeon is heading towards the player
-			else if (sign(player.x - x) == sign(xspeed)) {
-				// decrement the dive timer according to how many pigeons are left onscreen
-				dive_timer = spawner.total_pigeons <= 0 && instance_number(obj_pigeon) <= spawner.max_pigeons / 2 ? dive_timer - 4 : dive_timer - 1;
-				// if the dive timer is finished
-				if (dive_timer <= 0) {
-					// make the pigeon dive
-					state = pigeon_state.diving;
-				}
+		}
+		// if the pigeon is heading towards the player
+		else if (instance_exists(player) && sign(player.x - x) == sign(xspeed)) {
+			// decrement the dive timer according to how many pigeons are left onscreen
+			dive_timer = spawner.total_pigeons <= 0 && instance_number(obj_pigeon) <= spawner.max_pigeons / 2 ? dive_timer - 2 : dive_timer - 1;
+			// if the dive timer is finished
+			if (dive_timer <= 0) {
+				// make the pigeon dive
+				state = pigeon_state.diving;
 			}
 		}
 		

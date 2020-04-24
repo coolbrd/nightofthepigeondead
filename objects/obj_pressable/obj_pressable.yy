@@ -1,38 +1,28 @@
 {
-    "id": "e6db00a4-1cea-4a6d-a0e0-452bec9834cd",
+    "id": "93872bd2-ef9f-4e88-b757-63233cf7d8d9",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "obj_game_manager",
+    "name": "obj_pressable",
     "eventList": [
         {
-            "id": "1df47eaa-9125-4fe7-9a7e-47832f6b7b02",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 4,
-            "eventtype": 7,
-            "m_owner": "e6db00a4-1cea-4a6d-a0e0-452bec9834cd"
-        },
-        {
-            "id": "8d087884-b9c5-4947-a50e-f6d0bd1abc5e",
+            "id": "ef5728c3-b4ef-4d34-952c-6d72dc587c4d",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 3,
-            "m_owner": "e6db00a4-1cea-4a6d-a0e0-452bec9834cd"
+            "m_owner": "93872bd2-ef9f-4e88-b757-63233cf7d8d9"
         },
         {
-            "id": "0e81865d-1145-4f0b-86ff-fbe60de9c191",
+            "id": "76fbcb94-9293-4627-add3-cff7c60c8f83",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 0,
-            "m_owner": "e6db00a4-1cea-4a6d-a0e0-452bec9834cd"
+            "m_owner": "93872bd2-ef9f-4e88-b757-63233cf7d8d9"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
@@ -53,7 +43,7 @@
     "physicsStartAwake": true,
     "properties": [
         {
-            "id": "8071ffe3-090a-4dc3-9561-ef26f6f39b32",
+            "id": "0a427b4e-307a-49bc-aac0-654af9a2a32a",
             "modelName": "GMObjectProperty",
             "mvc": "1.0",
             "listItems": null,
@@ -62,9 +52,9 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "0",
-            "varName": "room_music",
-            "varType": 5
+            "value": "4",
+            "varName": "shake_length",
+            "varType": 1
         }
     ],
     "solid": false,

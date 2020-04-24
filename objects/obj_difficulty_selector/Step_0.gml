@@ -1,13 +1,14 @@
-if (pressable && place_meeting(x, y, obj_swing)) {
+event_inherited();
+
+// if the tv is hit
+if (pressed) {
+	// increment the difficulty and loop if necessary
 	difficulty_index = (difficulty_index + 1) % 4;
 	current_difficulty = difficulties[difficulty_index];
-	shake_frames = 4;
-	pressable = false;
 	
+	// play the tv sound
 	audio_play_sound(snd_tv_hit, 2, false);
 }
-else if (!pressable && !place_meeting(x, y, obj_swing)) {
-	pressable = true;
-}
 
+// keep the tv's display at the current difficulty
 image_index = difficulty_index;

@@ -273,7 +273,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "50",
+            "value": "35",
             "varName": "last_chance_meter_max",
             "varType": 1
         },
@@ -287,7 +287,7 @@
             "rangeMax": 10,
             "rangeMin": 0,
             "resourceFilter": 1023,
-            "value": "180",
+            "value": "240",
             "varName": "last_chance_timer_max",
             "varType": 1
         }

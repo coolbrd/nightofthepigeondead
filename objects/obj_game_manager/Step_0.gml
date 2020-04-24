@@ -16,3 +16,14 @@ else {
 	// return the camera to its original position
 	camera_set_view_pos(view_camera[0], camera_original_x, camera_original_y);
 }
+
+// if the game's music should be paused
+if (pause_music) {
+	// pause the music
+	audio_pause_sound(music);
+}
+// if the music is not paused
+else {
+	// resume it
+	audio_resume_sound(music)
+}

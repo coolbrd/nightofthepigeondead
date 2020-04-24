@@ -7,6 +7,9 @@ state = player_state.moving;
 // the number of pigeons killed
 total_score = 0;
 
+// the manager that plays music
+game_manager = instance_find(obj_game_manager, 0);
+
 // the player's head hitbox
 head = instance_create_layer(x, y, "Instances", obj_player_head);
 // give the head a reference to the player
@@ -49,8 +52,11 @@ invulnerable = false;
 // the timer that tracks player invulnerability
 current_invul_timer = 0;
 
+// whether or not the player is on their last chance
 dying = false;
+// the meter that must be filled in order to save the player's life
 last_chance_meter = 0;
+// the timer that determines whether the player lives or dies
 last_chance_timer = 0;
 
 // the floor in the current room

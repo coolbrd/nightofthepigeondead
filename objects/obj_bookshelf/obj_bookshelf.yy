@@ -1,43 +1,35 @@
 {
-    "id": "e6db00a4-1cea-4a6d-a0e0-452bec9834cd",
+    "id": "20fe58b8-2e52-4172-8547-6e2c993a01bf",
     "modelName": "GMObject",
     "mvc": "1.0",
-    "name": "obj_game_manager",
+    "name": "obj_bookshelf",
     "eventList": [
         {
-            "id": "1df47eaa-9125-4fe7-9a7e-47832f6b7b02",
-            "modelName": "GMEvent",
-            "mvc": "1.0",
-            "IsDnD": false,
-            "collisionObjectId": "00000000-0000-0000-0000-000000000000",
-            "enumb": 4,
-            "eventtype": 7,
-            "m_owner": "e6db00a4-1cea-4a6d-a0e0-452bec9834cd"
-        },
-        {
-            "id": "8d087884-b9c5-4947-a50e-f6d0bd1abc5e",
+            "id": "9f7acbc0-c353-4ca5-8501-4dbd6418b33a",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
-            "eventtype": 3,
-            "m_owner": "e6db00a4-1cea-4a6d-a0e0-452bec9834cd"
+            "eventtype": 8,
+            "m_owner": "20fe58b8-2e52-4172-8547-6e2c993a01bf"
         },
         {
-            "id": "0e81865d-1145-4f0b-86ff-fbe60de9c191",
+            "id": "96e71973-d629-4748-b45c-5ec72603b4ea",
             "modelName": "GMEvent",
             "mvc": "1.0",
             "IsDnD": false,
             "collisionObjectId": "00000000-0000-0000-0000-000000000000",
             "enumb": 0,
             "eventtype": 0,
-            "m_owner": "e6db00a4-1cea-4a6d-a0e0-452bec9834cd"
+            "m_owner": "20fe58b8-2e52-4172-8547-6e2c993a01bf"
         }
     ],
     "maskSpriteId": "00000000-0000-0000-0000-000000000000",
-    "overriddenProperties": null,
-    "parentObjectId": "00000000-0000-0000-0000-000000000000",
+    "overriddenProperties": [
+        
+    ],
+    "parentObjectId": "6604cae5-7c1a-425b-8bcf-2546fcfeea1c",
     "persistent": false,
     "physicsAngularDamping": 0.1,
     "physicsDensity": 0.5,
@@ -53,7 +45,7 @@
     "physicsStartAwake": true,
     "properties": [
         {
-            "id": "8071ffe3-090a-4dc3-9561-ef26f6f39b32",
+            "id": "2a8f9417-f8a8-4948-9412-44b633a3bf04",
             "modelName": "GMObjectProperty",
             "mvc": "1.0",
             "listItems": null,
@@ -63,11 +55,11 @@
             "rangeMin": 0,
             "resourceFilter": 1023,
             "value": "0",
-            "varName": "room_music",
-            "varType": 5
+            "varName": "dark",
+            "varType": 3
         }
     ],
     "solid": false,
-    "spriteId": "00000000-0000-0000-0000-000000000000",
+    "spriteId": "08cb6e22-98f9-45e1-b5e0-a9ba04995566",
     "visible": true
 }
